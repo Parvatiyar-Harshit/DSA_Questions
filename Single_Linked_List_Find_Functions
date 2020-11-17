@@ -1,0 +1,28 @@
+public static int finditeratively(node head,int f){
+        int count = 0;
+        int sol = 0;
+        int fail = -1;
+        node temp = head;
+        while(temp!=null){
+            sol++;
+            if(temp.data==f){
+                fail++;
+                count = sol;
+                
+            }
+            temp = temp.next;
+        }
+        if(fail==-1){
+            count=fail;
+        }
+        return count;
+    }
+    public static int findrecursively(node head , int f){
+        if (head==null){return -1;}
+        if(head.data==f){return 1;}
+        else{
+            int res = findrecursively(head.next,f);
+            if(res==-1){return -1;}
+            else{return res+1;}
+        }
+    }
