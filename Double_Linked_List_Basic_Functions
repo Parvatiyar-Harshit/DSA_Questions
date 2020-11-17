@@ -1,0 +1,77 @@
+class Node{
+    int data;
+    Node prev;
+    Node next;
+    Node(int x){
+        data = x;
+        prev = null;
+        next = null;
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		Node h = new Node(10);
+		Node i = new Node(20);
+		Node j = new Node(30);
+		h.next = i;
+		i.next = j;
+		i.prev = h;
+		j.prev = i;
+		
+		Node g = new Node(89);
+		Node m = deleteEnd(g);
+		printlist(m);
+	}
+	public static Node deleteEnd(Node h){
+	    if(h==null){return h;}
+	    if(h.next==null){return h.next;}
+	    else{
+	        Node temp = h;
+	        while(temp.next.next!=null){
+	            temp = temp.next;
+	        }
+	        temp.next = null;
+	        return h;
+	    }
+	    
+	}
+	public static Node deleteBegin(Node h){
+	    if(h==null){return h;}
+	    if(h.next==null){return h.next;}
+	    else{
+	        Node temp = h.next;
+	        temp.prev = null;
+	        return temp;
+	    }
+	}
+	public static Node insertEnd(Node h , int x){
+	    Node temp = new Node(x);
+	    Node k = h;
+	    if(k==null){return temp;}
+	    else{
+	    while(k.next!=null){
+	        k = k.next;
+	    }
+	    k.next = temp;
+	    temp.prev = k;
+	    return h;
+	    }
+	}
+	public static Node insertBegin(Node h , int x){
+	    Node temp = new Node(x);
+	    if(h==null){return temp;}
+	    else{
+	    temp.next = h;
+	    h.prev = temp;
+	    return temp;
+	    }
+	}
+	public static void printlist(Node h){
+	    Node temp = h;
+	    while(temp!=null){
+	        System.out.println(temp.data);
+	        temp = temp.next;
+	    }
+	}
+}
