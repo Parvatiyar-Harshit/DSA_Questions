@@ -1,0 +1,96 @@
+class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data = x;
+        next = null;
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		Node h = new Node(10);
+		h.next = new Node(20);
+		h.next.next = new Node(30);
+		h.next.next.next = new Node(40);
+		h.next.next.next.next = h;
+		
+		Node g = null;
+		
+		
+		Node m = deleteK(h,1);
+		
+		printlist(m);
+	}
+	public static Node deleteK(Node head , int k){
+	    Node temp = head;
+	    if(k==1){return deleteBeg(head);}
+	    else{
+	        for(int i=1;i<=k;i++){
+	            if (i==k-1){
+	                temp.next = temp.next.next;
+	            }
+	            temp = temp.next;
+	            
+	        }
+	        return head;
+	    }
+	}
+	public static Node deleteBeg(Node head){
+	    if(head==null){return head;}
+	    else if(head.next == head){return null;}
+	    else{
+	        int var = head.next.data;
+	        head.data = var;
+	        head.next = head.next.next;
+	        return head;
+	    }
+	}
+	public static Node insertEnd(Node head, int x){
+	    Node ins = new Node(x);
+	    Node temp = head;
+	    if(head == null){ins.next = ins;return ins;}
+	    else{
+	        int var  = 0;
+	        ins.next = head.next;
+	        head.next = ins;
+	        var = head.data;
+	        head.data=ins.data;
+	        ins.data = var;
+	        return ins;
+	        
+	    }
+	  
+	    
+	}
+	public static Node insertBeg(Node head, int x){
+	    Node ins = new Node(x);
+	    Node temp = head;
+	    if(head == null){ins.next = ins;return ins;}
+	    else{
+	        int var  = 0;
+	        ins.next = head.next;
+	        head.next = ins;
+	        var = head.data;
+	        head.data=ins.data;
+	        ins.data = var;
+	        return head;
+	        
+	    }
+	  
+	    
+	}
+	public static void printlist(Node head){
+	    if (head==null){System.out.println(" ");}
+	    else if(head.next == null){System.out.println(head.data);}
+	    else{
+	    Node temp = head;
+	    System.out.println(temp.data);
+	    temp=temp.next;
+	    while(temp!=head){
+	        System.out.println(temp.data);
+	        temp = temp.next;
+	    }
+	    }
+	}
+}
