@@ -1,0 +1,24 @@
+//to find length
+public static int len(node head){
+        int count = 0 ;
+        node temp = head;
+        while(temp!=null){
+            count++;
+            temp = temp.next;
+        }
+        return count;
+    }
+    //to find Nth node from end
+    public static void nend(node head , int k){
+        node temp = head;
+        int l = len(head);
+        int n = l-k+1;
+        if(n<=0){System.out.println(" ");}
+        else{
+            for(int i =1;i<n;i++){
+                temp = temp.next;
+            }
+            System.out.println(temp.data);
+        }
+        
+    }
