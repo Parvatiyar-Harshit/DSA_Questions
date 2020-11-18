@@ -1,0 +1,74 @@
+class Node{
+    int data;
+    Node prev;
+    Node next;
+    Node(int x){
+        data = x;
+        prev = null;
+        next = null;
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		Node h = new Node(10);
+		h.next = new Node(20);
+		h.next.next = new Node(30);
+		Node p = new Node(40);
+		h.next.next.next = p;
+		p.next = h;
+		h.prev = p;
+		p.prev = h.next.next;
+		p.prev.prev = h.next;
+		h.next.prev = h;
+		
+		Node g = new Node(50);
+		g.next = g;
+		g.prev = g;
+		Node q = null;
+		Node m = deleteEnd(h);
+		printlist(m);
+	}
+	public static Node deleteEnd(Node head){
+	    if(head==null||head.next==head){return null;}
+	    head.prev.prev.next = head;
+	    head.prev = head.prev.prev;
+	    return head;
+	}
+	public static Node deleteBeg(Node head){
+	    if(head==null||head.next==head){return null;}
+	    head.prev.next = head.next;
+	    head.next.prev = head.prev;
+	    return head.next;
+	}
+	public static Node insertEnd(Node head , int x){
+	    Node ins  = new Node(x);
+	    if(head==null){ins.next = ins;ins.prev =ins; return ins;}
+	    head.prev.next = ins;
+	    ins.prev = head.prev;
+	    ins.next = head;
+	    head.prev = ins;
+	    return head;
+	}
+	public static Node insertBeg(Node head , int x){
+	    Node ins = new Node(x);
+	    if(head==null){ins.next = ins;ins.prev = ins;return ins;}
+	    head.prev.next = ins;
+	    ins.prev = head.prev;
+	    ins.next = head;
+	    head.prev = ins;
+	    return ins;
+	}
+	public static void printlist(Node head){
+	    Node temp = head;
+	    if(head==null){System.out.println(" ");}
+	    else{
+	        while(temp.next!=head){
+	            System.out.println(temp.data);
+	            temp = temp.next;
+	        }
+	        System.out.println(temp.data);
+	    }
+	    
+	}
+}
