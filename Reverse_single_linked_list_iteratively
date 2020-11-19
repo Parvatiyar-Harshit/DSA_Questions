@@ -1,0 +1,47 @@
+class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data = x;
+        next = null;
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		Node h = new Node(10);
+		h.next = new Node(20);
+		h.next.next = new Node(30);
+		h.next.next.next = new Node(40);
+		Node m = reverse(h);
+		printlist(m);
+		
+	}
+	public static Node reverse(Node head){
+	    if(head==null){return head;}
+	    else{
+	        Node sol = new Node(head.data);
+	        Node temp = head.next;
+	        while(temp!=null){
+	            sol = addbeg(sol,temp.data);
+	            temp = temp.next;
+	        }
+	        return sol;
+	    }
+	}
+	public static void printlist(Node head){
+	    Node temp = head;
+	    while(temp!=null){
+	        System.out.print(temp.data+" ");
+	        temp = temp.next;
+	    }
+	}
+	public static Node addbeg(Node head , int x){
+	    Node temp = new Node(x);
+	    if(head==null){return temp;}
+	    else{
+	        temp.next = head;
+	        return temp;
+	    }
+	}
+}
