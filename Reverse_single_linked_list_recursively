@@ -1,0 +1,11 @@
+    public static node reverse(node head){
+        if(head==null){return head;}
+        else{
+        if(head.next == null){return head;}
+        node rest_head = reverse(head.next);
+        node rest_tail = head.next;
+        rest_tail.next = head;
+        head.next = null;
+        return rest_head;
+        }
+    }
