@@ -1,0 +1,16 @@
+public static node removeLoop(node head){
+        if(head.next == head){head.next=null;}
+        node temp =  head;
+        while(temp!=null){
+            node check = head;
+            while(check!=temp&&check!=null){
+                if(temp.next==check){
+                    temp.next=null;
+                    break;
+                }
+                check = check.next;
+            }
+            temp=temp.next;
+        }
+        return head;
+    }
