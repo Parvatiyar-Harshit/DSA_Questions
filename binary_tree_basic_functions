@@ -1,0 +1,65 @@
+class Node{
+    int data;
+    Node left;
+    Node right;
+    Node(int x){
+        data = x;
+    }
+    Node(int x, Node l , Node r){
+        data = x;
+        left = l;
+        right = r;
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		Node h = new Node(10);
+		h.left = new Node(20);
+		h.right = new Node(30);
+		h.right.left = new Node(40);
+		h.right.right = new Node(50);
+		
+		Node g = new Node(10);
+		Node k = null;
+		System.out.println(findHeight(h));
+		
+	}
+	public static int findHeight(Node head){
+	    if(head==null){return 0;}
+	    else{
+	    int height = 1;
+	    if(findHeight(head.left)>=findHeight(head.right)){
+	        return height+findHeight(head.left);
+	    }
+	    else{
+	        return height+findHeight(head.right);
+	    }
+	}
+	}
+	public static void traversePostorder(Node head){
+	    if(head==null){System.out.print(' ');}
+	    else{
+	        if(head.left!=null){traversePostorder(head.left);}
+	        if(head.right!=null){traversePostorder(head.right);}
+	        System.out.print(head.data+" ");
+	    }
+	}
+	
+	public static void traversePreorder(Node head){
+	    if(head==null){System.out.print(' ');}
+	    else{
+	        System.out.print(head.data+" ");
+	        if(head.left!=null){traversePreorder(head.left);}
+	        if(head.right!=null){traversePreorder(head.right);}
+	    }
+	}
+	public static void traverseInorder(Node head){
+	    if(head==null){System.out.println(" ");}
+	    else{
+	    if(head.left!=null){traverseInorder(head.left);}
+	    System.out.print(head.data+" ");
+	    if(head.right!=null){traverseInorder(head.right);}
+	    }
+	}
+}
